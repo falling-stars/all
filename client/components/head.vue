@@ -1,48 +1,29 @@
 <style scoped>
-  header {
-    top: 0;
-    height: 50px
-  }
-
-  header input {
-    width: 130px;
-    height: 22px
-  }
-
-  nav {
-    height: 50px
-  }
-
-  nav li {
-    width: 80px;
-    height: 50px;
-    line-height: 47px
-  }
-
-  #tag {
-    top: 46px;
-    width: 80px;
-    height: 4px;
-    transition: all .4s
-  }
+  header{height:50px}
+  header input{width:130px;height:22px}
+  .home{height:28px;width:70px;font-family:WaltDisneyScript,sans-serif;font-size:0.53rem;line-height:0.38;padding-left:10px}
+  nav{height:50px}
+  li{width:80px;height:50px;line-height:47px;margin-left:26px}
+  li:first-child{margin-left:0}
+  .search{left:22px;pointer-events:none}
+  input{text-indent:30px;border-radius:40px;border:none;padding:2px}
+  .tag{z-index:99;top:46px;width:80px;height:4px;transition:all .4s}
 </style>
 <template>
-  <header class="fixed full-width cursor-default black-bg z-index flex justify-between">
-    <div class="flex flex-center full-height" style="width: 200px">
-      <router-link to="/" class="inline-block margin-left-15 white-bg" style="height: 28px;width: 70px"></router-link>
-      <i class="fa fa-search white relative z-index event-none" style="left: 22px"></i>
-      <input readonly value="搜索组件和库" type="text"
-             class="cursor-pointer relative outline-none radius-100 radius-100 border-none indent-30 font-12 white grey-6-bg">
+  <header class="cursor-default black-bg flex flex-justify-between">
+    <div class="flex flex-center full-height">
+      <router-link to="/" class="inline-block margin-left white home">gracly</router-link>
+      <i class="fa fa-search white event-none relative search "></i>
+      <input readonly value="搜索组件和库" type="text" class="grey-6-bg font-10 grey-e pointer">
     </div>
     <nav class="relative">
-      <ul class="list-none">
-        <li v-for="u in link" :dsad=u class="inline-block cursor-pointer text-center margin-right-20" @mouseover="over"
-            @mouseout="out">
+      <ul class="list-none padding-right">
+        <li v-for="u in link" class="inline-block cursor-pointer text-center" @mouseover="over" @mouseout="out">
           <router-link :to=u.url class="font-18 full-width full-height font-16 inline-block white">{{u.name}}
           </router-link>
         </li>
       </ul>
-      <span id="tag" class="inline-block absolute select-green" :style="{left:tagX+'px'}"></span>
+      <span class="inline-block absolute tag select-color" :style="{left:tagX+'px'}"></span>
     </nav>
   </header>
 </template>
@@ -71,11 +52,25 @@
       }
     },
     watch: {
-      $route (to) {
-        this.initialX = to.meta.tagX
-        this.tagX = to.meta.tagX
+      $route(to) {
+        switch (to.path) {
+          case '/':
+            this.initialX = 0
+            break;
+          case '/start':
+            this.initialX = 106
+            break;
+          case '/document':
+            this.initialX = 212
+            break;
+          case '/hub':
+            this.initialX = 318
+            break;
+          case '/about':
+            this.initialX = 420
+            break;
+        }
       }
     }
   }
 </script>
-

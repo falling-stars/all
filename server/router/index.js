@@ -6,6 +6,6 @@ const router = new Router();
 
 router.get('/', async (ctx, next) => {
   ctx.type = 'html'
-  ctx.body = await fileRead('client/index.html')
+  ctx.body = await fileRead('index.html')
 })
 module.exports = router

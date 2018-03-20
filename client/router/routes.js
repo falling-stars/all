@@ -1,41 +1,27 @@
 const load = component => () => import(`../pages/${component}.vue`)
-
-
 export default [
   {
     path: '/',
     component: load('index'),
-    meta: {
-      tagX: 0,
-      keepAlive: true
-    }
+    meta: {keepAlive: true}
   },
   {
     path: '/start',
     component: load('start'),
-    meta: {
-      tagX: 100
-    }
+    meta: {keepAlive: true}
   },
   {
     path: '/document',
     component: load('document'),
-    meta: {
-      tagX: 200
-    }
+    meta: {keepAlive: true}
   },
   {
     path: '/hub',
-    component: load('hub'),
-    meta: {
-      tagX: 300
-    }
+    component: load('hub')
   },
   {
     path: '/about',
     component: load('about'),
-    meta: {
-      tagX: 400
-    }
+    meta: {keepAlive: true}
   }
 ]

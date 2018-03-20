@@ -1,124 +1,33 @@
 <style scoped>
-    footer {height: 150px}
-
-    footer > div:first-child {
-        font-size: 14px;
-        color: #C8C8C8;
-        height: 80%;
-        display: flex;
-        justify-content: space-around;
-    }
-
-    footer > div:first-child > div {
-        width: 33%;
-    }
-
-    .foot1 {
-        padding-left: 18px;
-        padding-top: 18px;
-    }
-
-    .foot1 > p {
-        margin: 0;
-        font-size: 14px;
-    }
-
-    .foot1 > p:first-child {
-        font-family: WaltDisneyScript, sans-serif;
-        font-size: 35px;
-        line-height: 0;
-        color: #D2D2D2;
-    }
-
-    .foot1 > p:last-child {
-        margin-top: 30px;
-    }
-
-    .foot2 {
-        padding-top: 18px;
-        padding-left: 80px;
-        font-size: 15px;
-    }
-
-    .foot2 > div {
-        padding-left: 64px;
-        padding-top: 3px;
-    }
-
-    .foot2 a {
-        display: inline-block;
-        width: 35%;
-        color: #D2D2D2;
-        margin-bottom: 3px;
-        margin-right: 10px;
-    }
-
-    .foot2 a:hover {
-        color: white;
-    }
-
-    .foot3 {
-        padding-top: 18px;
-        padding-left: 80px;
-        font-size: 15px;
-    }
-
-    .foot3 > div {
-        padding-left: 64px;
-        padding-top: 3px;
-    }
-
-    .foot3 a {
-        display: inline-block;
-        width: 80%;
-        color: #D2D2D2;
-        margin-bottom: 3px;
-    }
-
-    .foot3 a:hover {
-        color: white;
-    }
-
-    footer > div:last-child {
-        font-size: 14px;
-        color: #C8C8C8;
-        height: 20%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(#323232, #323232) no-repeat top/100% 1px;
-    }
-
-    footer > div a {
-        font-size: 14px;
-        color: #E6E6E6;
-        text-decoration: none;
-        margin-top: -3px;
-    }
+    footer {height: 138px;cursor: default;user-select: none;padding-top: 15px}
+    .show>div{flex-grow: 1}
+    .logo{font-family:WaltDisneyScript,sans-serif;font-size:0.53rem;line-height:0.38;padding-left: 16px}
+    .logo+p{padding-left: 16px;margin-top: 22px}
+    .link{padding-left: 86px}
+    .link a{width: calc(50% - 5px)}
+    .link a:hover{color: white}
 </style>
 <template>
-    <footer class="black-bg cursor-default">
-        <div>
-            <div class="foot1">
-                <p>gracly</p>
+    <footer class="black-bg cursor-default white padding-top">
+        <div class="flex flex-justify-around show padding-bottom">
+            <div class="white">
+                <p class="logo">gracly</p>
                 <p>PWA渐进式框架，构建高性能Web应用</p>
             </div>
-            <div class="foot2">
+            <div>
                 友情链接：
-                <div>
-                    <a v-for="i in friendLink" :href=i.href target="view_window">{{i.name}}</a>
+                <div class="link">
+                    <a class="inline-block grey-9 font-14 margin-top" v-for="i in friendLink" :href=i.href target="view_window">{{i.name}}</a>
                 </div>
             </div>
-            <div class="foot3">
+            <div>
                 联系我们:
-                <div>
-                    <a v-for="i in connection" :href=i.href target="view_window">{{i.name}}</a>
+                <div class="link">
+                    <a class="inline-block grey-9 font-14 margin-top" v-for="i in connection" :href=i.href target="view_window">{{i.name}}</a>
                 </div>
             </div>
         </div>
-        <div>
-            © 2018&nbsp;&nbsp;<router-link to="/">gracly.com</router-link>&nbsp;&nbsp;MIT
-        </div>
+        <div class="border-top white text-center padding-top font-14">© 2018&nbsp;&nbsp;<router-link to="/" class="white" style="vertical-align: 1px">gracly.com</router-link>&nbsp;&nbsp;MIT</div>
     </footer>
 </template>
 
@@ -135,7 +44,7 @@
                 ],
                 connection: [
                     {href: "mailto:liujianhuajs@gmail.com", name: "电子邮箱"},
-                    {href: "https://github.com/1769908045/gracly", name: "GitHub"}
+                    {href: "https://github.com/grajs/gracly", name: "GitHub"}
                 ]
             }
         }

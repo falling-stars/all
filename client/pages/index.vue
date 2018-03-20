@@ -1,60 +1,34 @@
 <style scoped>
-
-  .stage {
-    margin-top: 50px;
-    height: 560px;
-    background: url("../assets/images/back.jpg") no-repeat center/100% 100%;
-    background-attachment: fixed;
-  }
-
-  .stage > div h1 {
-    font-family: WaltDisneyScript, sans-serif;
-    font-size: 270px;
-    letter-spacing: 2px;
-    margin-top: -70px;
-  }
-
-  .stage > div h2 {
-    font-size: 45px;
-    letter-spacing: 2px;
-    margin-top: -170px;
-  }
-
-  .stage > div button {
-    border: solid 2px white;
-    width: 200px;
-    height: 50px;
-    background: transparent linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3), transparent) no-repeat -200px 0/auto auto;
-  }
-
-  .circle {
-    border: solid 1px #E6E6E6;
-    transition: all .1s;
-  }
-
-  .circle:hover {
-    border: solid 1px #C8C8C8;
-  }
-
+  .stage {height: 560px;background: url("../assets/images/back.jpg") no-repeat center/100% 100% fixed;user-select: none}
+  .stage div:first-child{left: 0;top: 0;z-index: 99}
+  h1 {font-family: WaltDisneyScript, sans-serif;font-size: 3.5rem;letter-spacing: 2px;line-height: 0.7}
+  h2 {font-size: 0.5rem;letter-spacing: 2px;margin-top: 80px}
+  #download {border-radius: 50px;margin-top: 30px;border: solid 2px white;width: 200px;height: 50px;background: transparent linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3), transparent) no-repeat -200px 0/auto auto}
+  canvas{left: 0;top: 0}
+  .introduce{padding: 40px 0}
+  .introduce >div{width: 120px;height: 120px}
+  .circle {width: 90px;height: 90px;border-radius: 50%;border: solid 1px #E6E6E6;margin: auto;transition: all .1s}
+  .circle:hover {border: solid 1px #C8C8C8}
+  .circle i{font-size: 0.6rem}
 </style>
 
 <template>
   <div>
-    <div class="stage full-width relative">
-      <div class="center text-center">
-        <h1 class="block white cursor-default normal">gracly</h1>
+    <div class="stage full-width relative overflow-hide">
+      <div class="absolute text-center full-width full-height">
+        <h1 class="block white normal">gracly</h1>
         <h2 class="block white normal">PWA渐进式前端框架</h2>
-        <button id="download" class="cursor-pointer white font-18 radius-50">立即下载</button>
+        <button id="download" class="pointer white font-18">立即下载</button>
       </div>
-      <canvas></canvas>
+      <canvas class="absolute full-width full-height"></canvas>
     </div>
-    <div class="characteristic white-bg text-center flex  justify-center padding-vertical-30">
-      <div v-for="i in introduce" class="text-center margin-auto margin-bottom-15">
-        <div class="circle margin-auto margin-bottom-10 size-100 margin-top-20 flex flex-center">
-          <i :class=i.tag aria-hidden="true" style="font-size: 44px" class="grey-6"></i>
+    <div class="introduce white-bg text-center flex  flex-justify-around">
+      <div v-for="i in introduce" class="text-center flex-child-noshrink">
+        <div class="circle flex flex-center">
+          <i :class=i.tag aria-hidden="true" class="grey-6"></i>
         </div>
-        <span class="black-3 block font-17">{{i.text1}}</span>
-        <span class="grey-9 block font-14 line-height-15">{{i.text2}}</span>
+        <span class="black-3 block font-16 black margin-top normal line-height-1_5">{{i.text1}}</span>
+        <span class="grey-9 block font-14 line-height-1_5">{{i.text2}}</span>
       </div>
     </div>
   </div>
@@ -64,21 +38,21 @@
   export default {
     data: () => ({
       introduce: [
-        {text1: "丰富的基础组件", text2: "常用的组件被", tag: "fa fa-cogs"},
-        {text1: "组件化引用", text2: "丰富的web组件轻松引入"},
-        {text1: "WebApp支持", text2: "优雅的WebApp构建方案"},
-        {text1: "性能提升", text2: "页面更流畅"}
+        {text1: '低耦合组件库', text2: '功能轻松引入', tag: 'fa fa-codepen'},
+        {text1: '函数式基础库', text2: '灵活易于扩展', tag: 'fa fa-superscript'},
+        {text1: '专注性能优化', text2: '打破性能瓶颈', tag: 'fa fa-line-chart'},
+        {text1: '交互体验提升', text2: '极致的用户体验', tag: 'fa fa-refresh'}
       ]
     }),
-    method: {},
-    mounted: function () {
+    activated: function () {
       const canvas = (() => {
-        const cs = document.getElementsByTagName("canvas")[0];
-        const ctx = cs.getContext("2d");
-        const width = document.getElementsByClassName("stage")[0].clientWidth;
-        const height = mobileDevice ? 360 : 560;
-        cs.height = height;
-        cs.width = width;
+        const mobile = this.$store.state.mobile
+        const cs = document.getElementsByTagName("canvas")[0]
+        const ctx = cs.getContext("2d")
+        const width = document.getElementsByClassName("stage")[0].clientWidth
+        const height = mobile ? 360 : 560
+        cs.width = width
+        cs.height = height
 
         class Start {
           constructor(x, y, size, spend, length) {
@@ -120,50 +94,49 @@
           }
         }
 
-//1.2-1.5
-        if (mobileDevice) {
-          const start1 = new Start(70, -15, 1.5, 0.5, 50);
-          start1.create();
-          const start2 = new Start(170, 0, 1.2, 1.1, 50);
-          start2.create();
-          const start3 = new Start(600, -43, 1.2, 1.5, 40);
-          start3.create();
+        if (mobile) {
+          const start1 = new Start(70, -15, 1.5, 0.5, 50)
+          start1.create()
+          const start2 = new Start(170, 0, 1.2, 1.1, 50)
+          start2.create()
+          const start3 = new Start(600, -43, 1.2, 1.5, 40)
+          start3.create()
           const move = () => {
-            ctx.clearRect(0, 0, width, 560);
-            start1.move();
-            start2.move();
-            start3.move();
-            startTag && setTimeout(move, 20);
-          };
+            ctx.clearRect(0, 0, width, 560)
+            start1.move()
+            start2.move()
+            start3.move()
+            this.$route.path === '/' && setTimeout(move, 20)
+          }
           move()
         } else {
-          const start1 = new Start(70, -20, 1.5, 0.5, 50);
-          start1.create();
-          const start2 = new Start(170, -100, 1.2, 1.1, 50);
-          start2.create();
-          const start3 = new Start(600, -3, 1.2, 1.5, 40);
-          start3.create();
-          const start4 = new Start(870, -70, 1.2, 1, 50);
-          start4.create();
-          const start5 = new Start(1270, -55, 1.3, 1, 38);
-          start5.create();
-          const start6 = new Start(300, -10, 1.2, 1, 46);
-          start6.create();
+          const start1 = new Start(70, -20, 1.5, 0.5, 50)
+          start1.create()
+          const start2 = new Start(170, -100, 1.2, 1.1, 50)
+          start2.create()
+          const start3 = new Start(600, -3, 1.2, 1.5, 40)
+          start3.create()
+          const start4 = new Start(870, -70, 1.2, 1, 50)
+          start4.create()
+          const start5 = new Start(1270, -55, 1.3, 1, 38)
+          start5.create()
+          const start6 = new Start(300, -10, 1.2, 1, 46)
+          start6.create()
           const move = () => {
-            ctx.clearRect(0, 0, width, 560);
-            start1.move();
-            start2.move();
-            start3.move();
-            start4.move();
-            start5.move();
-            start6.move();
-            startTag && setTimeout(move, 20);
+            ctx.clearRect(0, 0, width, 560)
+            start1.move()
+            start2.move()
+            start3.move()
+            start4.move()
+            start5.move()
+            start6.move()
+            this.$route.path === '/' && setTimeout(move, 20)
           };
           move()
         }
-      })();
+      })()
       const button = (() => {
-        const obj = getId("download");
+        const obj = document.getElementById("download");
         let lock = 0;
         let hover = 0;
         const buttonLight = () => {
@@ -190,7 +163,7 @@
         setTimeout(buttonLight(), 1000);
         obj.onmousemove = e => hover === 0 && buttonLight()() || (() => hover = 1)();
         obj.onmouseout = e => hover = 0;
-      })();
+      })()
     }
   }
 </script>
