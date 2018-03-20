@@ -8,7 +8,7 @@ module.exports = {
     vendor: ['vue', 'vue-router', 'vuex', 'axios']
   },
   output: {
-    path: resolve(__dirname, '../static'),
+    path: resolve(__dirname, '../dist'),
     filename: "[name].js?"
   },
   module: {
@@ -57,7 +57,7 @@ module.exports = {
   devServer: {
     port: 8080,
     hot: true,
-    contentBase: resolve(__dirname, '../static'),
+    contentBase: resolve(__dirname, '../dist'),
     proxy: {
       '/web': {
         target: 'https://m.xxx.com/',

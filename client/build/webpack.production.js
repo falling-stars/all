@@ -7,7 +7,7 @@ module.exports = {
     bundle: resolve(__dirname, '../main')
   },
   output: {
-    path: resolve(__dirname, '../static'),
+    path: resolve(__dirname, '../dist'),
     filename: "[name].js?[chunkhash:8]",
     chunkFilename: "[name].js?[chunkhash:8]",
   },
