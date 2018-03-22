@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config build/webpack.development.js --mode development",
-    "build": "webpack --config build/webpack.production.js --mode production"
+    "dev": "webpack-dev-server --config client/build/webpack.development.js --mode development",
+    "build": "webpack --config client/build/webpack.production.js --mode production",
+    "start": "node server/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -33,7 +34,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "koa": "^2.5.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2",
     "mint-ui": "^2.2.13",
+    "mysql": "^2.15.0",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"

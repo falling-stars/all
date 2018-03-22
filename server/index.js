@@ -9,4 +9,4 @@ const app = new Koa()
 app.use(server(resolve(__dirname, './static'), {index: "next"}))
 app.use(router.routes(), router.allowedMethods())
 
-http.createServer(app.callback()).listen(88)
+http.createServer(app.callback()).listen(8080,()=>console.log("run in 8080"))
