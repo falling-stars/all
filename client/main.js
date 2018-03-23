@@ -6,8 +6,9 @@ import './assets/style/common.css'
 import 'font-awesome/css/font-awesome.min.css'
 import './assets/js/base'
 
+/* eslint-disable no-new */
 new Vue({
-  el: "#body",
+  el: '#body',
   store,
   router,
   render: h => h(App)
