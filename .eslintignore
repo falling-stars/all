@@ -1,2 +1,3 @@
 client/dist/*.js
+client/assets/js/base.js
 server/

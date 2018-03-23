@@ -1,21 +1,24 @@
 <style scoped>
-  .stage {height: 560px;background: url("../assets/images/back.jpg") no-repeat center/100% 100% fixed;user-select: none}
-  .stage div:first-child{left: 0;top: 0;z-index: 99}
-  h1 {font-family: WaltDisneyScript, sans-serif;font-size: 3.5rem;letter-spacing: 2px;line-height: 0.7}
-  h2 {font-size: 0.5rem;letter-spacing: 2px;margin-top: 80px}
-  #download {border-radius: 50px;margin-top: 30px;border: solid 2px white;width: 200px;height: 50px;background: transparent linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3), transparent) no-repeat -200px 0/auto auto}
-  canvas{left: 0;top: 0}
-  .introduce{padding: 40px 0}
-  .introduce >div{width: 120px;height: 120px}
-  .circle {width: 90px;height: 90px;border-radius: 50%;border: solid 1px #E6E6E6;margin: auto;transition: all .1s}
-  .circle:hover {border: solid 1px #C8C8C8}
-  .circle i{font-size: 0.6rem}
+  .stage{height:560px;user-select:none;perspective:1000px}
+  .back{top:0;left:0;transform-style:preserve-3d;background:url(../assets/images/back.jpg) no-repeat center/100% 100% fixed;z-index:2;transition:all 1s}
+  .stage:hover .back{transform:rotateY(3deg)}
+  .text{left:0;top:0;z-index:3}
+  h1{font-family:WaltDisneyScript,sans-serif;font-size:3.5rem;letter-spacing:2px;line-height:.7}
+  h2{font-size:.5rem;letter-spacing:2px;margin-top:80px}
+  #download{border-radius:50px;margin-top:30px;border:solid 2px #fff;width:200px;height:50px;background:transparent linear-gradient(60deg,transparent,rgba(255,255,255,.3),rgba(255,255,255,.8),rgba(255,255,255,.3),transparent) no-repeat -200px 0/auto auto}
+  canvas{left:0;top:0;z-index:2}
+  .introduce{padding:40px 0}
+  .introduce>div{width:120px;height:120px}
+  .circle{width:90px;height:90px;border-radius:50%;border:solid 1px #E6E6E6;margin:auto;transition:all .1s}
+  .circle:hover{border:solid 1px #C8C8C8}
+  .circle i{font-size:.6rem}
 </style>
 
 <template>
   <div>
     <div class="stage full-width relative overflow-hide">
-      <div class="absolute text-center full-width full-height">
+      <div class="back full-width full-height absolute"></div>
+      <div class="text absolute text-center full-width full-height">
         <h1 class="block white normal">gracly</h1>
         <h2 class="block white normal">PWA渐进式前端框架</h2>
         <button id="download" class="pointer white font-18">立即下载</button>
@@ -45,51 +48,51 @@
       ]
     }),
     activated: function () {
-      const canvas = (() => {
+      const canvas = () => {
         const mobile = this.$store.state.mobile
-        const cs = document.getElementsByTagName("canvas")[0]
-        const ctx = cs.getContext("2d")
-        const width = document.getElementsByClassName("stage")[0].clientWidth
+        const cs = document.getElementsByTagName('canvas')[0]
+        const ctx = cs.getContext('2d')
+        const width = document.getElementsByClassName('stage')[0].clientWidth
         const height = mobile ? 360 : 560
         cs.width = width
         cs.height = height
 
         class Start {
           constructor(x, y, size, spend, length) {
-            this.X = x;
-            this.Y = y;
-            this.Spend = spend;
-            this.Size = size;
-            this.Length = length;
-            this.random = Math.random;
+            this.X = x
+            this.Y = y
+            this.Spend = spend
+            this.Size = size
+            this.Length = length
+            this.random = Math.random
           }
 
           create() {
-            ctx.beginPath();
-            ctx.arc(this.X, this.Y, this.Size, 0, 2 * Math.PI);
-            ctx.fillStyle = "white";
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = "#F0F0F0";
-            ctx.fill();
-            ctx.beginPath();
-            ctx.fillStyle = "rgba(255,255,255,0.8)";
-            ctx.moveTo(this.X - this.Size + 1.5, this.Y - this.Size - 0.2);
-            ctx.lineTo(this.X + this.Length, this.Y - this.Length);
-            ctx.lineTo(this.X, this.Y + this.Size + 0.5);
-            ctx.closePath();
-            ctx.fill();
+            ctx.beginPath()
+            ctx.arc(this.X, this.Y, this.Size, 0, 2 * Math.PI)
+            ctx.fillStyle = 'white'
+            ctx.shadowBlur = 10
+            ctx.shadowColor = '#F0F0F0'
+            ctx.fill()
+            ctx.beginPath()
+            ctx.fillStyle = 'rgba(255,255,255,0.8)'
+            ctx.moveTo(this.X - this.Size + 1.5, this.Y - this.Size - 0.2)
+            ctx.lineTo(this.X + this.Length, this.Y - this.Length)
+            ctx.lineTo(this.X, this.Y + this.Size + 0.5)
+            ctx.closePath()
+            ctx.fill()
           }
 
           move() {
-            this.Y += this.Spend;
-            this.X -= this.Spend;
-            this.create(this.X, this.Y);
+            this.Y += this.Spend
+            this.X -= this.Spend
+            this.create(this.X, this.Y)
             if (this.Y > height + 10 && this.X < -10) {
-              this.Y = this.random() * -60;
-              this.X = this.random() * width + 200;
-              this.Size = this.random() + 0.5;
-              this.Length = this.random() * 35 + 20;
-              this.Spend = this.random() + 1;
+              this.Y = this.random() * -60
+              this.X = this.random() * width + 200
+              this.Size = this.random() + 0.5
+              this.Length = this.random() * 35 + 20
+              this.Spend = this.random() + 1
             }
           }
         }
@@ -131,39 +134,40 @@
             start5.move()
             start6.move()
             this.$route.path === '/' && setTimeout(move, 20)
-          };
+          }
           move()
         }
-      })()
-      const button = (() => {
-        const obj = document.getElementById("download");
-        let lock = 0;
-        let hover = 0;
+      }
+      const button = () => {
+        const obj = document.getElementById('download')
+        let lock = 0
+        let hover = 0
         const buttonLight = () => {
-          let x = -200;
+          let x = -200
           return () => {
             if (lock === 0) {
-              lock = 1;
+              lock = 1
               const move = () => {
                 if (x < 200) {
-                  x += 10;
-                  obj.style.background = `linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3), transparent) no-repeat ${x}px 0/auto auto`;
-                  setTimeout(move, 10);
+                  x += 10
+                  obj.style.background = `linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3), transparent) no-repeat ${x}px 0/auto auto`
+                  setTimeout(move, 10)
+                } else {
+                  obj.style.background = `linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3), transparent) no-repeat -200px 0/auto auto`
+                  x = -200
+                  lock = 0
                 }
-                else {
-                  obj.style.background = `linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3), transparent) no-repeat -200px 0/auto auto`;
-                  x = -200;
-                  lock = 0;
-                }
-              };
+              }
               setTimeout(move, 0)
             }
           }
-        };
-        setTimeout(buttonLight(), 1000);
-        obj.onmousemove = e => hover === 0 && buttonLight()() || (() => hover = 1)();
-        obj.onmouseout = e => hover = 0;
-      })()
+        }
+        setTimeout(buttonLight(), 1000)
+        obj.onmousemove = e => hover === 0 && buttonLight()() || (() => hover = 1)()
+        obj.onmouseout = () => hover = 0
+      }
+      canvas()
+      button()
     }
   }
 </script>
