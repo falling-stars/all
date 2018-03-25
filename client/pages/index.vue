@@ -1,7 +1,6 @@
 <style scoped>
   .stage{height:560px;user-select:none;perspective:1000px}
-  .back{top:0;left:0;transform-style:preserve-3d;background:url(../assets/images/back.jpg) no-repeat center/100% 100% fixed;z-index:2;transition:all 1s}
-  .stage:hover .back{transform:rotateY(3deg)}
+  .back{top:0;left:0;transform-style:preserve-3d;background:url(../assets/images/back.jpg) no-repeat center/100% 100% fixed;z-index:2; transform: translateZ(1rem)}
   .text{left:0;top:0;z-index:3}
   h1{font-family:WaltDisneyScript,sans-serif;font-size:3.5rem;letter-spacing:2px;line-height:.7}
   h2{font-size:.5rem;letter-spacing:2px;margin-top:80px}
@@ -16,8 +15,8 @@
 
 <template>
   <div>
-    <div class="stage full-width relative overflow-hide">
-      <div class="back full-width full-height absolute"></div>
+    <div class="stage full-width relative overflow-hide" @mousemove="move3d">
+      <div class="back full-height full-width absolute"></div>
       <div class="text absolute text-center full-width full-height">
         <h1 class="block white normal">gracly</h1>
         <h2 class="block white normal">PWA渐进式前端框架</h2>
@@ -45,9 +44,20 @@
         {text1: '函数式基础库', text2: '灵活易于扩展', tag: 'fa fa-superscript'},
         {text1: '专注性能优化', text2: '打破性能瓶颈', tag: 'fa fa-line-chart'},
         {text1: '交互体验提升', text2: '极致的用户体验', tag: 'fa fa-refresh'}
-      ]
+      ],
+      stage: null,
+      back: null,
+      centerX: 0,
+      centerY: 0,
+      rotateX: 0,
+      rotateY: 0
     }),
-    activated: function () {
+    methods: {
+      move3d(e) {
+        this.back.style.transform = `translateZ(1rem) rotateX(${-(e.pageY - this.centerY) * this.rotateY}deg) rotateY(${(e.pageX - this.centerX) * this.rotateX}deg)`
+      }
+    },
+    activated() {
       const canvas = () => {
         const mobile = this.$store.state.mobile
         const cs = document.getElementsByTagName('canvas')[0]
@@ -168,6 +178,14 @@
       }
       canvas()
       button()
+    },
+    mounted() {
+      this.stage = document.getElementsByClassName('stage')[0]
+      this.back = document.getElementsByClassName('back')[0]
+      this.centerX = this.back.clientWidth / 2
+      this.centerY = this.back.clientHeight / 2
+      this.rotateX = 3 / this.centerX
+      this.rotateY = 3 / this.centerY
     }
   }
 </script>

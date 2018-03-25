@@ -16,6 +16,7 @@ module.exports = {
     'no-mixed-operators': 0,
     'no-new': 0,
     'space-before-function-paren': 0,
-    'eol-last': 0
+    'eol-last': 0,
+    'no-unused-vars': 0
   }
 }
