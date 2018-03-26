@@ -4,12 +4,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    bundle: resolve(__dirname, '../main')
+    bundle: resolve(__dirname, '../client/main')
   },
   output: {
-    path: resolve(__dirname, '../../server/static'),
-    filename: "[name].js?[chunkhash:8]",
-    chunkFilename: "[name].js?[chunkhash:8]",
+    path: resolve(__dirname, '../server/static'),
+    filename: '[name].js?[chunkhash:8]',
+    chunkFilename: '[name].js?[chunkhash:8]'
   },
   module: {
     rules: [
@@ -45,23 +45,23 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          chunks: "all"
+          name: 'vendor',
+          chunks: 'all'
         }
       }
     }
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: resolve(__dirname, '../index.html')
+      filename: 'index.html',
+      template: resolve(__dirname, '../client/index.html')
     })
   ],
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],
     alias: {
-      '~': resolve(__dirname, '../')
+      '~': resolve(__dirname, '../client')
     }
   },
-  devtool: "source-map"
+  devtool: 'source-map'
 }

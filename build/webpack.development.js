@@ -4,12 +4,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    bundle: resolve(__dirname, '../main'),
+    bundle: resolve(__dirname, '../client/main'),
     vendor: ['vue', 'vue-router', 'vuex', 'axios']
   },
   output: {
-    path: resolve(__dirname, '../dist'),
-    filename: "[name].js?"
+    path: resolve(__dirname, '../server/static'),
+    filename: '[name].js?'
   },
   module: {
     rules: [
@@ -42,8 +42,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: resolve(__dirname, '../index.html')
+      filename: 'index.html',
+      template: resolve(__dirname, '../client/index.html')
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
@@ -51,13 +51,13 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],
     alias: {
-      '~': resolve(__dirname, '../')
+      '~': resolve(__dirname, '../client')
     }
   },
   devServer: {
     port: 8080,
     hot: true,
-    contentBase: resolve(__dirname, '../dist'),
+    contentBase: resolve(__dirname, '../server/static'),
     proxy: {
       '/web': {
         target: 'https://m.xxx.com/',
@@ -65,5 +65,5 @@ module.exports = {
       }
     }
   },
-  devtool: "eval"
+  devtool: 'eval'
 }

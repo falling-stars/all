@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config client/build/webpack.development.js --mode development --progress",
-    "build": "webpack --config client/build/webpack.production.js --mode production --progress",
+    "dev": "webpack-dev-server --config build/webpack.development.js --mode development --progress",
+    "build": "webpack --config build/webpack.production.js --mode production --progress",
     "start": "node server/index.js"
   },
   "author": "",
