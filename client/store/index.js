@@ -1,16 +1,16 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
-import {mobileDevice} from '../assets/js/base'
+import {mobileDevice} from '../assets/gracly/npm/base'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     mobile: mobileDevice,
-    token: '',
+    token: ''
   },
   mutations: {
-    setToken(token) {
+    setToken(state, token) {
       state.token = token
     }
   },
