@@ -4,8 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    bundle: resolve(__dirname, '../client/main'),
-    vendor: ['vue', 'vue-router', 'vuex', 'axios']
+    bundle: resolve(__dirname, '../client/main')
   },
   output: {
     path: resolve(__dirname, '../server/static'),
