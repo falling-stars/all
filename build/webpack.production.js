@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    bundle: resolve(__dirname, '../client/main')
+    bundle: resolve(__dirname, '../client/main'),
+    vue: ['vue', 'vuex', 'vue-router']
   },
   output: {
     path: resolve(__dirname, '../server/static'),
@@ -43,10 +44,11 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        vendor: {
+        vue: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all'
+          name: 'vue',
+          chunks: 'all',
+          reuseExistingChunk: true
         }
       }
     }
