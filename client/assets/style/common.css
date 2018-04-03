@@ -200,3 +200,15 @@ html,body{min-height: 100%;width:100%;touch-action: manipulation;}
 
 .no-scroll {width: 100%;height: 100%;overflow: hidden;}
 .model{ width:100%; height:100%; background:rgba(0,0,0,.4); left:0; top:0; z-index:1; position:fixed; }
+
+.h1{font-size: 0.4rem}
+.h2{font-size: 0.35rem;margin-top: 20px;position: relative;margin-bottom: 20px}
+.h2:after {content: '';position: absolute;left: 0;bottom: -10px;width: 100%;height: 1px;background-color: #dfdfdf}
+.h3{font-size: 0.25rem;font-weight: normal;margin-bottom: 10px}
+.code{background-color: #F5F5F5;margin-bottom: 16px;border-radius: 2px;padding: 18px 30px;line-height: 22px;font-size: 14px;color: #333}
+.note{color: #9c9c9c}
+.tip0{color: #01AAED}
+.tip1{color: #fd9712}
+.tip2 {color: #d73a49}
+.tip3 {color: #6f42c1}
+.tip4 {color: #009688}
