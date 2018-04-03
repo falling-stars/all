@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <ul class="menu grey-f-bg flex-child-noshrink" :class="{fixed:isFixed,static:isStatic}">
-      <li v-for="(i, k) in list" class="pointer inline-block full-width border-box text-center black relative" :class="{select:k===0}">
+      <li v-for="i in list" class="pointer inline-block full-width border-box text-center black relative" :class="{select:i.select}">
         <a :href="i.url" class="inline-block full-height full-width">{{i.text}}</a>
       </li>
     </ul>
@@ -10,7 +10,7 @@
       <h1 class="h1">基本用法</h1>
       <h2 class="h2" id="into">引入</h2>
       我们将基础库和组件库分开形成 <span class="tip0">base.js</span> 和 <span class="tip0">component.js</span> 两个文件,在使用过程中可以自行决定是否使用自带的组件库
-      <h3 class="h3">使用静态文件:</h3>
+      <h3 class="h3">使用静态文件：</h3>
       <div class="code">
         &lt;head&gt;
         <br>
@@ -34,13 +34,21 @@
         <br>
         &lt;/body&gt;
       </div>
-      <h3 class="h3">使用 npm:</h3>
+      <h3 class="h3">使用 npm：</h3>
       <div class="code">
         npm install gracly -save
         <br>
-        import { <span class="tip0">query</span>, <span class="tip0">GraRoute</span> } from 'gracly/component'
+        import { <span class="tip0">query</span> } from 'gracly/base'
         <br>
-        query('.demo'[1], 'div')
+        import { <span class="tip0">GraRoute</span> } from 'gracly/component'
+        <br>
+        <br>
+        <span class="note">//base内置DOM选择器</span>
+        <br>
+        <span class="tip0">query</span>('.demo'[1], 'div')
+        <br>
+        <br>
+        <span class="note">//基于History的单页面组件</span>
         <br>
         const <span class="tip0">route</span> = new <span class="tip0">GraRoute</span>(
         <br>
@@ -69,32 +77,95 @@
         ], false)
       </div>
       <h2 class="h2" id="example">实例</h2>
-      我们将基础库和组件库分开形成 <span class="tip0">base.js</span> 和 <span class="tip0">component.js</span> 两个文件,在使用过程中可以自行决定是否使用自带的组件库
-      <h3 class="h3">使用静态文件:</h3>
+      <h3 class="h3">运用伪柯里化函数<span class="tip0">currying_</span>实现DOM选择器：</h3>
       <div class="code">
-        &lt;head&gt;
+        <span class="note">//模块化需要引入{ query }</span>
         <br>
-        &lt;meta charset="UTF-8"&gt;
+        import { <span class="tip0">currying_</span>, <span class="tip0">for_</span> } from 'gracly/component'
         <br>
-        &lt;title>gracly&lt;/title&gt;
         <br>
-        &lt;link rel="stylesheet" href="gracly/css/gracly.css"&gt;
+        <span class="note">//定于前后两个参数之间的运算及其返回值</span>
         <br>
-        &lt;/head&gt;
+        <span class="note">//第二个参数除了传入id以外都将返回a.getElementBy...(b)的结果</span>
         <br>
-        &lt;body&gt;
+        const <span class="tip0">elFun</span> = (<span class="tip0">a</span>, <span class="tip0">b</span>) => {
         <br>
-        <span class="note">&lt;!---------&gt;</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;if (<span class="tip0">b</span>.substr(0, 1) === '#') {
         <br>
-        &lt;script src="gracly/base.js">&lt;/script&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return document.getElementById(<span class="tip0">b</span>.substr(1))
         <br>
-        <span class="note">&lt;!--需要使用组件时引入--&gt;</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;} else if (<span class="tip0">b</span>.substr(0, 1) === '.') {
         <br>
-        &lt;script src="gracly/component.js">&lt;/script&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return <span class="tip0">a</span>.getElementsByClassName(<span class="tip0">b</span>.substr(1).replace(/\[\d+]/g, ''))[getIndex(<span class="tip0">b</span>)]
         <br>
-        &lt;/body&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;} else {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return <span class="tip0">a</span>.getElementsByTagName(<span class="tip0">b</span>.replace(/\[\d+]/g, ''))[getIndex(<span class="tip0">b</span>)]
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}
+        <br>
+        }
+        <br>
+        <br>
+        <span class="note">//设置如何处理第一个参数</span>
+        <br>
+        const <span class="tip0">elInit</span> = <span class="tip0">a</span> => {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;if (<span class="tip0">a</span>.substr(0, 1) === '#') {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return document.getElementById(<span class="tip0">a</span>.substr(1))
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;} else if (<span class="tip0">a</span>.substr(0, 1) === '.') {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return document.getElementsByClassName(<span class="tip0">a</span>.substr(1).replace(/\[\d+]/g, ''))[getIndex(<span class="tip0">a</span>)]
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;} else {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return document.getElementsByTagName(<span class="tip0">a</span>.replace(/\[\d+]/g, ''))[getIndex(<span class="tip0">a</span>)]
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}
+        <br>
+        }
+        <br>
+        <br>
+        <span class="note">//柯里化结合</span>
+        <br>
+        const <span class="tip0">getElement</span> = <span class="tip0">currying_</span>(<span class="tip0">elFun</span>, <span class="tip0">elInit</span>)
+        <br>
+        <br>
+        <span class="note">//运行getElement</span>
+        <br>
+        getElement('div')('.item')()
+        <br>
+        <span class="note">&gt;&gt;获得第一个div下的第一个class为item的元素</span>
+        <br>
+        <br>
+        getElement('div[1]')('.item')('button')()
+        <br>
+        <span class="note">&gt;&gt;获得第二个div下的第一个class为item的元素下的第一个buttom</span>
+        <br>
+        <br>
+        <span class="note">//优化选择器调用形式</span>
+        <br>
+        const <span class="tip0">query</span> = <span class="tip0">queryStr</span> => {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;const args = <span class="tip0">queryStr</span>.split(' ')
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;let <span class="tip0">get</span> = null
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tip0">for_</span>(args, (i, k) => k === 0 && (<span class="tip0">get</span> = <span class="tip0">getElement</span>(i)) || <span class="tip0">get</span>(i))
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return <span class="tip0">get</span>()
+        <br>
+        }
+        <br>
+        <span class="tip0">query</span>('div[1] .item button[0]')
+        <br>
+        <br>
+        <br>
+        <span class="note">//上述的query在base里面已经存在，可以直接调用</span>
       </div>
-      <h3 class="h3">使用 npm:</h3>
+      <h3 class="h3">使用组件示例：</h3>
       <div class="code">
         npm install gracly -save
         <br>
@@ -138,8 +209,8 @@
     data: () => {
       return {
         list: [
-          {text: '安装', url: '#into'},
-          {text: '实例', url: '#example'}
+          {text: '安装', url: '#into', select: true},
+          {text: '实例', url: '#example', select: false}
         ],
         isFixed: false,
         isStatic: true
@@ -164,6 +235,23 @@
             },
             repeat: true
           }
+        },
+        {
+          top: 950,
+          up: {
+            callback: () => {
+              self.list[0].select = true
+              self.list[1].select = false
+            },
+            repeat: true
+          },
+          down: {
+            callback: () => {
+              self.list[0].select = false
+              self.list[1].select = true
+            },
+            repeat: true
+          }
         }
       ])
     },
@@ -180,14 +268,20 @@
         html = html.replace(/let/g, '<span class="tip2">let</span>')
         html = html.replace(/var/g, '<span class="tip2">var</span>')
         html = html.replace(/ = /g, '<span class="tip2"> = </span>')
+        html = html.replace(/ === /g, '<span class="tip2"> === </span>')
         html = html.replace(/link/g, '<span class="tip2">link</span>')
         html = html.replace(/script/g, '<span class="tip2">script</span>')
         html = html.replace(/=&gt;/g, '<span class="tip2">=&gt;</span>')
+        html = html.replace(/if/g, '<span class="tip2">if</span>')
+        html = html.replace(/else/g, '<span class="tip2">else</span>')
         html = html.replace(/new/g, '<span class="tip3">new</span>')
         html = html.replace(/true/g, '<span class="tip3">true</span>')
         html = html.replace(/false/g, '<span class="tip3">false</span>')
         html = html.replace(/npm/g, '<span class="tip4">npm</span>')
         html = html.replace(/install/g, '<span class="tip4">install</span>')
+        html = html.replace(/return/g, '<span class="tip4">return</span>')
+        html = html.replace(/\(/g, '( ')
+        html = html.replace(/\)/g, ' )')
         i.innerHTML = html
       })
     }
