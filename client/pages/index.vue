@@ -9,9 +9,8 @@
   .introduce{padding:40px 0}
   .introduce>div{width:120px;height:120px}
   .circle{width:90px;height:90px;border-radius:50%;border:solid 1px #E6E6E6;margin:auto;transition:all .1s}
+  .circle i{font-size:.6rem;transition: all 1s}
   .circle:hover{border:solid 1px #C8C8C8}
-  .circle:hover i{color:#5dc800}
-  .circle i{font-size:.6rem}
 </style>
 
 <template>
