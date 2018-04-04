@@ -15,9 +15,11 @@ app.use(server(resolve(__dirname, './static'), {index: "next"}))
 app.use(router.routes(), router.allowedMethods())
 
 
-
 https.createServer(ssh, app.callback()).listen(443)
 
 const redirect = new Koa()
-redirect.use(async ctx => ctx.status = 301 || ctx.set("Location", "https://www.gracly.com"))
+redirect.use(async ctx => {
+  ctx.status = 301
+  ctx.set({'Location': 'https://www.gracly.com'})
+})
 redirect.listen(80)
