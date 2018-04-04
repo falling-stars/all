@@ -1,6 +1,6 @@
 <style scoped>
   .stage{height:560px;user-select:none;perspective:1000px}
-  .back{top:0;left:0;transform-style:preserve-3d;background:url(../assets/images/back.jpg) no-repeat center/100% 100%;z-index:2; transform: translateZ(1rem)}
+  .back{top:0;left:0;transform-style:preserve-3d;background:url(../assets/images/index-back.jpg) no-repeat center/1920px auto;z-index:2}
   .text{left:0;top:0;z-index:3}
   h1{font-family:WaltDisneyScript,sans-serif;font-size:3.5rem;letter-spacing:2px;line-height:.7}
   h2{font-size:.5rem;letter-spacing:2px;margin-top:80px}
