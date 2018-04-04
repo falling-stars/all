@@ -94,8 +94,69 @@ export class GraPage {
           reset(select.nextElementSibling)
         }
       }
-      +select.innerText === pageNum ? callBack(pageNum + '') : move()
+      parseInt(select.innerText) === pageNum ? callBack(pageNum + '') : move()
     }
     container.onclick = ({target}) => target.tagName.toLowerCase() === 'button' && !target.classList.contains('page-button') && reset(target)
+  }
+}
+
+export class GraRoute {
+  constructor(routes, hash = true) {
+    this.routes = routes
+    this.hash = hash
+    this.init()
+    this.event()
+  }
+
+  searchRoute(url) {
+    const routes = this.routes
+    let result = false
+
+    for (let i = 0, len = routes.length; i < len; i++) {
+      if (routes[i].url === url) {
+        result = routes[i]
+        break;
+      }
+    }
+    return result
+  }
+
+  init() {
+    this.emit()
+  }
+
+  push(url) {
+    if (this.hash) {
+      location.hash = `#${url}`
+    } else {
+      history.pushState(null, null, url)
+      this.emit()
+    }
+  }
+
+  emit() {
+    let routeTarget = false
+    if (this.hash) {
+      if (location.hash !== '') {
+        const hash = location.hash.substr(1)
+        const searchResult = this.searchRoute(hash)
+        if (hash !== '' && searchResult) {
+          routeTarget = searchResult
+        }
+      } else {
+        location.hash = '#/'
+      }
+    } else {
+      const pathname = location.pathname
+      const searchResult = this.searchRoute(pathname)
+      if (pathname !== '' && searchResult) {
+        routeTarget = searchResult
+      }
+    }
+    routeTarget && (routeTarget.state ? routeTarget.callBack(routeTarget.state) : routeTarget.callBack())
+  }
+
+  event() {
+    window.onpopstate = e => this.emit()
   }
 }

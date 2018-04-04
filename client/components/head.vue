@@ -32,11 +32,11 @@
   export default {
     data: () => ({
       link: [
-        {url: "/", name: "首页"},
-        {url: "/start", name: "快速入门"},
-        {url: "/document", name: "文档"},
-        {url: "/hub", name: "社区"},
-        {url: "/about", name: "关于"}
+        {url: '/', name: '首页'},
+        {url: '/start', name: '快速入门'},
+        {url: '/document', name: '文档'},
+        {url: '/hub', name: '社区'},
+        {url: '/about', name: '关于'}
       ],
       initialX: 0,
       tagX: 0
@@ -44,11 +44,11 @@
     methods: {
       over: function (e) {
         this.tagX = e.target.offsetLeft
-        e.target.classList.add("over")
+        e.target.classList.add('over')
       },
       out: function (e) {
-        e.target.classList.remove("over")
-        setTimeout(() => document.getElementsByClassName("over").length === 0 && (this.tagX = this.initialX), 400)
+        e.target.classList.remove('over')
+        setTimeout(() => document.getElementsByClassName('over').length === 0 && (this.tagX = this.initialX), 400)
       }
     },
     watch: {
@@ -56,19 +56,24 @@
         switch (to.path) {
           case '/':
             this.initialX = 0
-            break;
+            this.tagX = 0
+            break
           case '/start':
             this.initialX = 106
-            break;
+            this.tagX = 106
+            break
           case '/document':
             this.initialX = 212
-            break;
+            this.tagX = 212
+            break
           case '/hub':
             this.initialX = 318
-            break;
+            this.tagX = 318
+            break
           case '/about':
             this.initialX = 420
-            break;
+            this.tagX = 420
+            break
         }
       }
     }

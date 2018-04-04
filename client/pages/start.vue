@@ -81,7 +81,7 @@
       <div class="code">
         <span class="note">//模块化需要引入{ query }</span>
         <br>
-        import { <span class="tip0">currying_</span>, <span class="tip0">for_</span> } from 'gracly/component'
+        import { <span class="tip0">currying_</span>, <span class="tip0">for_</span> } from 'gracly/base'
         <br>
         <br>
         <span class="note">//定于前后两个参数之间的运算及其返回值</span>
@@ -167,44 +167,28 @@
       </div>
       <h3 class="h3">使用组件示例：</h3>
       <div class="code">
-        npm install gracly -save
+        import { <span class="tip0">query</span> } from 'gracly/base''
         <br>
-        import { <span class="tip0">query</span>, <span class="tip0">GraRoute</span> } from 'gracly/component'
+        import { <span class="tip0">GraPage</span> } from 'gracly/component''
         <br>
-        query('.demo'[1], 'div')
+        new <span class="tip0">GraPage</span>(<span class="tip0">query</span>('#page'), {
         <br>
-        const <span class="tip0">route</span> = new <span class="tip0">GraRoute</span>(
+        &nbsp;&nbsp;&nbsp;&nbsp;total: 100,
         <br>
-        [
+        &nbsp;&nbsp;&nbsp;&nbsp;show: 11
         <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;{
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url: '/',
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state: { age: 32 },
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callBack: state => console.log( state.age )
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;},
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;{
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url: '/start',
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state: { age: 988 },
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callBack: state => console.log( state.age )
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;}
-        <br>
-        ], false)
+        }, <span class="tip0">value</span> => console.log(<span class="tip0">value</span>))
       </div>
+      <h3 class="h3">组件效果：</h3>
+      <div class="code" id="page"></div>
     </div>
   </div>
 </template>
 
 <script>
-  import {scrollEvent} from '~/assets/gracly/npm/base'
+  import {scrollEvent, query} from '~/assets/gracly/npm/base'
+  import {GraPage} from '~/assets/gracly/npm/component'
+  import '~/assets/gracly/css/gracly.css'
   export default {
     data: () => {
       return {
@@ -284,6 +268,10 @@
         html = html.replace(/\)/g, ' )')
         i.innerHTML = html
       })
+      new GraPage(query('#page'), {
+        total: 100,
+        show: 11
+      }, value => console.log(value))
     }
   }
 </script>

@@ -41,16 +41,8 @@ const elInit = a => {
 const getElement = currying_(elFun, elInit)
 const query = queryStr => {
   const args = queryStr.split(' ')
-  console.log(args)
   let get = null
-  for_(args, (i, k) => {
-    console.log(i)
-    if (k === 0) {
-      get = getElement(i)
-    } else {
-      get(i)
-    }
-  })
+  for_(args, (i, k) => k === 0 && (get = getElement(i)) || get(i))
   return get()
 }
 const querys = queryStr => {
