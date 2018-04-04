@@ -11,7 +11,7 @@ const ssh = {
   cert: fs.readFileSync(resolve(__dirname, './ssh/ssh.pem'))
 }
 
-app.use(server(resolve(__dirname, './static'), {index: "next", maxage:10000000000,immutable: true}))
+app.use(server(resolve(__dirname, './static'), {index: 'next', maxage: 10000000000, immutable: true}))
 app.use(router.routes(), router.allowedMethods())
 
 

@@ -12,8 +12,8 @@
 </template>
 
 <script>
-  import headContent from "./components/head"
-  import footContent from "./components/foot"
+  import headContent from './components/head'
+  import footContent from './components/foot'
 
   export default {
     components: {headContent, footContent}
