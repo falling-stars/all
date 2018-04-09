@@ -7,7 +7,7 @@ module.exports = {
     bundle: resolve(__dirname, '../client/main')
   },
   output: {
-    path: resolve(__dirname, '../server/static'),
+    path: resolve(__dirname, '../dist'),
     filename: '[name].js?'
   },
   module: {
@@ -22,7 +22,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            name: '[name].[ext]?[hash]'
+            name: '[name].[ext]'
           }
         }]
       },
@@ -42,7 +42,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: resolve(__dirname, '../client/index.html')
+      template: resolve(__dirname, '../client/template.html')
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()

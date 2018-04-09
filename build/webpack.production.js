@@ -8,7 +8,7 @@ module.exports = {
     vue: ['vue', 'vuex', 'vue-router']
   },
   output: {
-    path: resolve(__dirname, '../server/static'),
+    path: resolve(__dirname, '../dist'),
     filename: '[name].js?[chunkhash:8]',
     chunkFilename: '[name].js?[chunkhash:8]'
   },
@@ -24,7 +24,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            name: '[name].[ext]?[hash]'
+            name: '[name].[ext]'
           }
         }]
       },
@@ -56,7 +56,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: resolve(__dirname, '../client/index.html')
+      template: resolve(__dirname, '../client/template.html')
     })
   ],
   resolve: {
