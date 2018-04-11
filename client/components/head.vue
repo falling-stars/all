@@ -12,7 +12,7 @@
 <template>
   <header class="cursor-default black-bg flex flex-justify-between">
     <div class="flex flex-center full-height">
-      <router-link to="/" class="inline-block margin-left white home">gracly</router-link>
+      <router-link to="/" class="inline-block margin-left white home normal">gracly</router-link>
       <i class="fa fa-search white event-none relative search "></i>
       <input readonly value="搜索组件和库" type="text" class="grey-6-bg font-10 grey-e pointer">
     </div>
@@ -49,11 +49,9 @@
       out: function (e) {
         e.target.classList.remove('over')
         setTimeout(() => document.getElementsByClassName('over').length === 0 && (this.tagX = this.initialX), 400)
-      }
-    },
-    watch: {
-      $route(to) {
-        switch (to.path) {
+      },
+      routeActiv(path) {
+        switch (path) {
           case '/':
             this.initialX = 0
             this.tagX = 0
@@ -75,6 +73,14 @@
             this.tagX = 420
             break
         }
+      }
+    },
+    created() {
+      this.routeActiv(this.$route.path)
+    },
+    watch: {
+      $route(to) {
+        this.routeActiv(to.path)
       }
     }
   }

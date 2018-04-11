@@ -37,6 +37,8 @@
 </template>
 
 <script>
+  import {mobileDevice} from '../assets/gracly/npm/base'
+
   export default {
     data: () => ({
       introduce: [
@@ -66,6 +68,7 @@
         const height = mobile ? 360 : 560
         cs.width = width
         cs.height = height
+
         class Start {
           constructor(x, y, size, spend, length) {
             this.X = x
@@ -75,6 +78,7 @@
             this.Length = length
             this.random = Math.random
           }
+
           create() {
             ctx.beginPath()
             ctx.arc(this.X, this.Y, this.Size, 0, 2 * Math.PI)
@@ -90,6 +94,7 @@
             ctx.closePath()
             ctx.fill()
           }
+
           move() {
             this.Y += this.Spend
             this.X -= this.Spend
@@ -103,6 +108,7 @@
             }
           }
         }
+
         if (mobile) {
           const start1 = new Start(70, -15, 1.5, 0.5, 50)
           start1.create()
@@ -176,6 +182,7 @@
       button()
     },
     mounted() {
+      this.$store.commit('setMobile', mobileDevice())
       this.stage = document.getElementsByClassName('stage')[0]
       this.back = document.getElementsByClassName('back')[0]
       this.centerX = this.back.clientWidth / 2
