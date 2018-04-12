@@ -26,6 +26,7 @@
       </ul>
       <span class="inline-block absolute tag select-color" :style="{left:tagX+'px'}"></span>
     </nav>
+
     <i v-if="fold" class="extend fa fa-angle-double-down inline-block absolute pointer text-center" aria-hidden="true" @click="extend"></i>
   </header>
 </template>
