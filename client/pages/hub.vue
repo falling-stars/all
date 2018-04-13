@@ -1,5 +1,6 @@
 <style scoped>
   .head{height: 46px;border-bottom: solid 1px #dfdfdf}
+  .head ul{padding-left: 0.2rem}
   .hub{padding:0.2rem;background-color:#F5F5F5}
   .user i{font-size: 30px}
   .login{flex-basis: 3.8rem}
@@ -12,17 +13,20 @@
   .fa-weibo{color:#c80f1e}
   .liSelect:after{content:'';position:absolute;width:100%;height:3px;bottom:0;left:0;display:inline-block;background-color:#00bc9b}
   .right{flex-basis: 5rem;margin-left: 0.2rem}
-  .tagLink{padding: 5px 10px;border-radius: 30px}
+  .tagLink{padding: 5px  10px 6px 10px;border-radius: 30px}
   .tagLink:hover{background-color: #1E9FFF;color: white}
   .activeLink{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 4rem;margin: 6px 10px;height: 16px}
   .activeLink span{margin-left: 3px}
   .activeLink:hover span{color:#FF5722}
   section img{width: 1rem;height: 1rem}
+  .left-title{padding: 6px 10px 16px 10px}
+  .top-obj{width: 3rem;height: 4rem;box-shadow: 0 0 5px #888}
+  .img-div{height: 2rem}
 </style>
 <template>
   <div>
     <div class="head flex flex-justify-between white-bg">
-      <ul class="flex-child-grow padding-left flex-child-noshrink">
+      <ul class="flex-child-grow flex-child-noshrink">
         <li class="li-obj inline-block full-height relative" v-for="i in ulList" :class="{liSelect:i.select}">
           <router-link class="inline-block full-height" :to="i.url">{{i.text}}</router-link>
         </li>
@@ -39,7 +43,20 @@
       </div>
     </div>
     <div class="hub flex flex-justify-between">
-      <div class="left flex-child-grow flex-child-noshrink white-bg">1</div>
+      <div class="left flex-child-grow white-bg">
+        <div class="white-bg padding full-width border-box">
+          <div class="left-title flex flex-justify-between border-bottom">
+            <h2 class="normal">置顶</h2>
+            <router-link to="/" class="font-12 blue">如何置顶？</router-link>
+          </div>
+          <div class="flex padding margin-top flex-wrap flex-justify-start">
+            <div class="top-obj margin" v-for="i in top">
+              <div class="img-div full-width" :style="{background:`url('${i.img}') center/100% auto no-repeat`}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="right flex-child-noshrink">
         <div class="white-bg">
           <div class="flex flex-justify-between padding border-bottom">
@@ -130,6 +147,26 @@
         {text: 'W3C中国会员统一见面会', url: 'w3c', type: 'book'},
         {text: 'Google开源机器学习库TensorFlow', url: 'w3c', type: 'code'},
         {text: 'W3C中国会员统一见面会', url: 'w3c', type: 'book'}
+      ],
+      top: [
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'},
+        {text: '好书推荐-你不知道的JavaScript（下卷）', url: 'es6', img: 'assets/top.727caa3d33ea45019af8bef3c1026f3c.jpg'}
       ]
     })
   }
