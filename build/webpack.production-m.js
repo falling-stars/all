@@ -4,11 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    bundle: resolve(__dirname, '../pc/main')
+    bundle: resolve(__dirname, '../m/main'),
+    vue: ['vue', 'vuex', 'vue-router']
   },
   output: {
-    path: resolve(__dirname, '../dist-pc'),
-    filename: '[name].js?'
+    path: resolve(__dirname, '../dist-m'),
+    filename: '[name].js?[chunkhash:8]',
+    chunkFilename: '[name].js?[chunkhash:8]'
   },
   module: {
     rules: [
@@ -18,7 +20,7 @@ module.exports = {
       {test: /\.less$/, loader: ['style-loader', 'css-loader', 'less-loader']},
       {test: /\.vue$/, loader: ['vue-loader']},
       {
-        test: /favicon\.ico$/,
+        test: /favicon\.ico/,
         use: [{
           loader: 'file-loader',
           options: {
@@ -28,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
-        exclude: /favicon\.png$/,
+        exclude: /favicon\.ico$/,
         use: [{
           loader: 'url-loader',
           options: {
@@ -39,30 +41,29 @@ module.exports = {
       }
     ]
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vue: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vue',
+          chunks: 'all',
+          reuseExistingChunk: true
+        }
+      }
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: resolve(__dirname, '../pc/template.html')
-    }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+      template: resolve(__dirname, '../m/template.html')
+    })
   ],
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],
     alias: {
-      '~': resolve(__dirname, '../pc')
+      '~': resolve(__dirname, '../m')
     }
   },
-  devServer: {
-    port: 8080,
-    hot: true,
-    contentBase: resolve(__dirname, '../dist-pc'),
-    proxy: {
-      '/web': {
-        target: 'https://m.xxx.com/',
-        changeOrigin: true
-      }
-    }
-  },
-  devtool: 'eval'
+  devtool: 'source-map'
 }

@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    bundle: resolve(__dirname, '../pc/main')
+    bundle: resolve(__dirname, '../m/main')
   },
   output: {
-    path: resolve(__dirname, '../dist-pc'),
+    path: resolve(__dirname, '../dist-m'),
     filename: '[name].js?'
   },
   module: {
@@ -42,7 +42,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: resolve(__dirname, '../pc/template.html')
+      template: resolve(__dirname, '../m/template.html')
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
@@ -50,13 +50,13 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],
     alias: {
-      '~': resolve(__dirname, '../pc')
+      '~': resolve(__dirname, '../m')
     }
   },
   devServer: {
     port: 8080,
     hot: true,
-    contentBase: resolve(__dirname, '../dist-pc'),
+    contentBase: resolve(__dirname, '../dist-m'),
     proxy: {
       '/web': {
         target: 'https://m.xxx.com/',

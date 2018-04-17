@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.development.js --mode development --progress",
     "build": "webpack --config build/webpack.production.js --mode production --progress",
+    "dev-m": "webpack-dev-server --config build/webpack.development-m.js --mode development --progress",
+    "build-m": "webpack --config build/webpack.production-m.js --mode production --progress",
     "start-dev": "npm run build&&set NODE_ENV=development&&node server/index.js",
     "start-pro": "npm run build&&set NODE_ENV=production&&node server/index.js"
   },

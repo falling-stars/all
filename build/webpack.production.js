@@ -4,11 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    bundle: resolve(__dirname, '../client/main'),
+    bundle: resolve(__dirname, '../pc/main'),
     vue: ['vue', 'vuex', 'vue-router']
   },
   output: {
-    path: resolve(__dirname, '../dist'),
+    path: resolve(__dirname, '../dist-pc'),
     filename: '[name].js?[chunkhash:8]',
     chunkFilename: '[name].js?[chunkhash:8]'
   },
@@ -56,13 +56,13 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: resolve(__dirname, '../client/template.html')
+      template: resolve(__dirname, '../pc/template.html')
     })
   ],
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],
     alias: {
-      '~': resolve(__dirname, '../client')
+      '~': resolve(__dirname, '../pc')
     }
   },
   devtool: 'source-map'
