@@ -1,12 +1,13 @@
 <style scoped>
   header{bottom: 0;left: 0;z-index: 9999;height: 56px}
+  li{width:56px}
   li i{margin-bottom: 2px}
 </style>
 <template>
   <header class="fixed full-width white-bg">
     <nav class="border-top full-height">
       <ul class="full-height flex flex-justify-around">
-        <li v-for="u in link" class="font-12 full-height">
+        <li v-for="u in link" class="font-12 full-height border-box">
           <router-link class="full-height full-width flex flex-col flex-justify-center text-center" :to="u.url">
             <i v-if="u.url==='/'" style="font-size: 30px" :class="{black: active==='/','grey-9': active!=='/'}" class="fa fa-home" aria-hidden="true"></i>
             <i v-if="u.url==='/hub'" style="font-size: 29px" :class="{black: active==='/hub','grey-9': active!=='/hub'}" class="fa fa-comments-o" aria-hidden="true"></i>

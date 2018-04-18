@@ -1,11 +1,5 @@
 <template>
   <div class="flex">
-    <ul class="menu grey-f-bg flex-child-noshrink" :class="{fixed:isFixed,static:isStatic}">
-      <li v-for="(i, k) in list" class="pointer inline-block full-width border-box text-center black relative" :class="{select:i.select}" @click="select(k)">
-        <a :href="i.url" class="inline-block full-height full-width">{{i.text}}</a>
-      </li>
-    </ul>
-    <div v-if="isFixed" class="cover flex-child-noshrink border-right grey-f-bg"></div>
     <div class="content flex-child-grow line-height-1_5">
       <h1 class="h1">基本用法</h1>
       <h2 class="h2" id="into">引入</h2>
@@ -182,79 +176,15 @@
       <h3 class="h3">组件效果：</h3>
       <div class="code" id="page"></div>
     </div>
-    <up></up>
   </div>
 </template>
 
 <script>
-  import up from '~/components/up'
+  import {Toast} from 'mint-ui'
   import {scrollEvent, query} from '~/assets/gracly/npm/base'
   import {GraPage} from '~/assets/gracly/npm/component'
   import '~/assets/gracly/css/gracly.css'
   export default {
-    components: {up},
-    data: () => {
-      return {
-        list: [
-          {text: '安装', url: '#into', select: true},
-          {text: '实例', url: '#example', select: false}
-        ],
-        isFixed: false,
-        isStatic: true
-      }
-    },
-    methods: {
-      select(k) {
-        if (k === 0) {
-          this.list[0].select = true
-          this.list[1].select = false
-        }
-        if (k === 1) {
-          this.list[0].select = false
-          this.list[1].select = true
-        }
-      }
-    },
-    created() {},
-    activated() {
-      const self = this
-      scrollEvent([
-        {
-          top: 50,
-          up: {
-            callback: () => {
-              self.isStatic = true
-              self.isFixed = false
-            },
-            repeat: true
-          },
-          down: {
-            callback: () => {
-              self.isStatic = false
-              self.isFixed = true
-            },
-            repeat: true
-          }
-        },
-        {
-          top: 950,
-          up: {
-            callback: () => {
-              self.list[0].select = true
-              self.list[1].select = false
-            },
-            repeat: true
-          },
-          down: {
-            callback: () => {
-              self.list[0].select = false
-              self.list[1].select = true
-            },
-            repeat: true
-          }
-        }
-      ])
-    },
     mounted() {
       Array.prototype.map.call(document.getElementsByClassName('code'), i => {
         let html = i.innerHTML
@@ -287,17 +217,15 @@
       new GraPage(query('#page'), {
         total: 100,
         show: 11
-      }, value => console.log(value))
+      }, value => Toast(`你点击了第${value}页`))
     }
   }
 </script>
 
 <style scoped>
-  .menu{flex-basis: 2rem;width:2rem;left: 0;top:0;padding-top:10px;z-index: 99}
-  .menu li{height: 0.4rem;margin-bottom: 5px;line-height: 0.4rem;border-left: solid 4px #e2e2e2;text-indent: -3px;transition: all 0.5s}
-  .menu li:hover{border-left: solid 10px #5FB878;text-indent: -6px}
-  .menu .select{border-left: solid 10px #5FB878;text-indent: -6px}
-  .cover{flex-basis: 2rem;padding-top:10px}
-  .static{position: static}
+  .h1{font-size: 0.5rem}
+  .h2{font-size: 0.45rem}
+  .h3{font-size: 0.45rem}
   .content{padding: 0.45rem 0.8rem;color: black}
+  .code{padding: 0.5rem;white-space: nowrap;max-width:7.4rem;overflow: auto}
 </style>
