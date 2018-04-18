@@ -4,7 +4,7 @@
   .text{left:0;top:0;z-index:3}
   h1{font-family:WaltDisneyScript,sans-serif;font-size:3.5rem;letter-spacing:2px;line-height:.7}
   h2{font-size:.5rem;letter-spacing:2px;margin-top:80px}
-  #download{border-radius:50px;margin-top:30px;border:solid 2px #fff;width:200px;height:50px;background:transparent linear-gradient(60deg,transparent,rgba(255,255,255,.3),rgba(255,255,255,.8),rgba(255,255,255,.3),transparent) no-repeat -200px 0/auto auto}
+  #download{border-radius:50px;margin-top:40px;border:solid 2px #fff;width:200px;height:50px;background:transparent linear-gradient(60deg,transparent,rgba(255,255,255,.3),rgba(255,255,255,.8),rgba(255,255,255,.3),transparent) no-repeat -200px 0/auto auto}
   canvas{left:0;top:0;z-index:2}
   .introduce{padding:40px 0}
   .introduce>div{width:120px;height:120px}
@@ -37,8 +37,6 @@
 </template>
 
 <script>
-  import {mobileDevice} from '../assets/gracly/npm/base'
-
   export default {
     data: () => ({
       introduce: [
@@ -61,11 +59,10 @@
     },
     activated() {
       const canvas = () => {
-        const mobile = this.$store.state.mobile
         const cs = document.getElementsByTagName('canvas')[0]
         const ctx = cs.getContext('2d')
         const width = document.getElementsByClassName('stage')[0].clientWidth
-        const height = mobile ? 360 : 560
+        const height = 560
         cs.width = width
         cs.height = height
 
@@ -109,47 +106,31 @@
           }
         }
 
-        if (mobile) {
-          const start1 = new Start(70, -15, 1.5, 0.5, 50)
-          start1.create()
-          const start2 = new Start(170, 0, 1.2, 1.1, 50)
-          start2.create()
-          const start3 = new Start(600, -43, 1.2, 1.5, 40)
-          start3.create()
-          const move = () => {
-            ctx.clearRect(0, 0, width, 560)
-            start1.move()
-            start2.move()
-            start3.move()
-            this.$route.path === '/' && setTimeout(move, 20)
-          }
-          move()
-        } else {
-          const start1 = new Start(70, -20, 1.5, 0.5, 50)
-          start1.create()
-          const start2 = new Start(170, -100, 1.2, 1.1, 50)
-          start2.create()
-          const start3 = new Start(600, -3, 1.2, 1.5, 40)
-          start3.create()
-          const start4 = new Start(870, -70, 1.2, 1, 50)
-          start4.create()
-          const start5 = new Start(1270, -55, 1.3, 1, 38)
-          start5.create()
-          const start6 = new Start(300, -10, 1.2, 1, 46)
-          start6.create()
-          const move = () => {
-            ctx.clearRect(0, 0, width, 560)
-            start1.move()
-            start2.move()
-            start3.move()
-            start4.move()
-            start5.move()
-            start6.move()
-            this.$route.path === '/' && setTimeout(move, 20)
-          }
-          move()
+        const start1 = new Start(70, -20, 1.5, 0.5, 50)
+        start1.create()
+        const start2 = new Start(170, -100, 1.2, 1.1, 50)
+        start2.create()
+        const start3 = new Start(600, -3, 1.2, 1.5, 40)
+        start3.create()
+        const start4 = new Start(870, -70, 1.2, 1, 50)
+        start4.create()
+        const start5 = new Start(1270, -55, 1.3, 1, 38)
+        start5.create()
+        const start6 = new Start(300, -10, 1.2, 1, 46)
+        start6.create()
+        const move = () => {
+          ctx.clearRect(0, 0, width, 560)
+          start1.move()
+          start2.move()
+          start3.move()
+          start4.move()
+          start5.move()
+          start6.move()
+          this.$route.path === '/' && setTimeout(move, 20)
         }
+        move()
       }
+
       const button = () => {
         const obj = document.getElementById('download')
         let lock = 0
@@ -182,7 +163,6 @@
       button()
     },
     mounted() {
-      this.$store.commit('setMobile', mobileDevice())
       this.stage = document.getElementsByClassName('stage')[0]
       this.back = document.getElementsByClassName('back')[0]
       this.centerX = this.back.clientWidth / 2

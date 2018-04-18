@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <!--<headContent></headContent>-->
+    <headContent></headContent>
     <keep-alive>
-      <router-view v-if="$route.meta.keepAlive">
+      <router-view style="margin-bottom: 60px" v-if="$route.meta.keepAlive">
       </router-view>
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive">
+    <router-view style="margin-bottom: 60px" v-if="!$route.meta.keepAlive">
     </router-view>
   </div>
 </template>
@@ -16,10 +16,9 @@
   import headContent from './components/head'
 
   export default {
-    // components: {headContent}
+    components: {headContent}
   }
 </script>
 
 <style scoped>
-
 </style>

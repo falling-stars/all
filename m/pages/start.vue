@@ -201,6 +201,11 @@
         ],
         isFixed: false,
         isStatic: true
+        // demo: {
+        //   a: {
+        //     name: 'i am a'
+        //   }
+        // }
       }
     },
     methods: {
@@ -288,6 +293,7 @@
         total: 100,
         show: 11
       }, value => console.log(value))
+      // console.log(this.demo?.a?.name)
     }
   }
 </script>

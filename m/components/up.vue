@@ -76,11 +76,11 @@
 </script>
 
 <style scoped>
-  .container{width:.6rem;height:1.3rem;right:5px;bottom:40%}
-  .up{border-radius:50%;border:solid 1px #dfdfdf;height:.6rem;margin-bottom:0.1rem}
+  .container{width:1rem;right:0.4rem;bottom:40%}
+  .up{border-radius:50%;border:solid 1px #dfdfdf;height:1rem;margin-bottom:10px}
   i{line-height:.65rem;font-size:.4rem;transform:rotate(-45deg)}
   .spread{line-height:.6rem;transition:all 0.5s}
-  .menu{border-radius:50%;border:solid 1px #dfdfdf;height:0.6rem;transition:all 0.5s}
+  .menu{border-radius:50%;border:solid 1px #dfdfdf;height:1rem;transition:all 0.5s}
   .menu li{line-height:0.49rem;border-radius:50%;border:solid 1px #dfdfdf;width:0.5rem;height:0.5rem;transition:all 0.5s;z-index:-1}
   .menu li a{top: -2px}
   .menu li a:hover{background-color: #5FB878;color: white}
