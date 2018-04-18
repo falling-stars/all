@@ -61,8 +61,6 @@
       rotateX: 0,
       rotateY: 0
     }),
-    methods: {
-    },
     activated() {
       const canvas = () => {
         const mobile = this.$store.state.mobile
