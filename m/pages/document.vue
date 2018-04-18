@@ -1,17 +1,6 @@
 <template>
-  <div class="flex">
-    <ul class="menu grey-f-bg flex-child-noshrink" :class="{fixed:isFixed,static:isStatic}" @click="select">
-      <li v-for="(i, k) in list" class="inline-block full-width border-box text-center black relative">
-        <span class="inline-block full-width grey-d-bg">{{i.text}}</span>
-        <ul>
-          <li v-for="m in i.child" class="li-obj font-14 pointer" :class="{liSelect:m.select}">
-            <a :href="m.url" class="inline-block full-height full-width">{{m.text}}</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <div v-if="isFixed" class="cover flex-child-noshrink border-right grey-f-bg"></div>
-    <div class="content flex-child-grow line-height-1_5 flex-child-noshrink">
+  <div>
+    <div class="content flex-child-grow line-height-1_5 flex-child-noshrink border-box full-width">
       <h1 class="h1">基本用法</h1>
       <h2 class="h2" id="into">引入</h2>
       我们将基础库和组件库分开形成 <span class="tip0">base.js</span> 和 <span class="tip0">component.js</span> 两个文件,在使用过程中可以自行决定是否使用自带的组件库
@@ -304,12 +293,9 @@
 </script>
 
 <style scoped>
-  .menu{flex-basis: 2rem;width:2rem;left: 0;top:0;z-index: 99}
-  .menu span{line-height: 2.1;margin-bottom: 4px}
-  .menu ul li{height: 0.4rem;margin-bottom: 5px;line-height: 0.4rem;border-left: solid 4px #e2e2e2;text-indent: -3px;transition: all 0.5s}
-  .menu ul li:hover{border-left: solid 10px #5FB878;text-indent: -6px}
-  .menu .liSelect{border-left: solid 10px #5FB878;text-indent: -6px}
-  .cover{flex-basis: 2rem;padding-top:10px}
-  .static{position: static}
-  .content{padding: 0.45rem 0.8rem;color: black}
+  .h1{font-size: 0.5rem}
+  .h2{font-size: 0.45rem}
+  .h3{font-size: 0.45rem}
+  .content{padding: 0.45rem 0.5rem;color: black}
+  .code{padding: 0.5rem;white-space: nowrap;max-width:8rem;overflow: auto}
 </style>

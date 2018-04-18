@@ -185,7 +185,11 @@
   import {GraPage} from '~/assets/gracly/npm/component'
   import '~/assets/gracly/css/gracly.css'
   export default {
+    data: () => ({
+      init: false
+    }),
     mounted() {
+      const self = this
       Array.prototype.map.call(document.getElementsByClassName('code'), i => {
         let html = i.innerHTML
         html = html.replace(/rel/g, '<span class="tip2">rel</span>')
@@ -217,7 +221,13 @@
       new GraPage(query('#page'), {
         total: 100,
         show: 11
-      }, value => Toast(`你点击了第${value}页`))
+      }, value => {
+        if (self.init) {
+          Toast(`你点击了第${value}页`)
+        } else {
+          self.init = true
+        }
+      })
     }
   }
 </script>
@@ -226,6 +236,6 @@
   .h1{font-size: 0.5rem}
   .h2{font-size: 0.45rem}
   .h3{font-size: 0.45rem}
-  .content{padding: 0.45rem 0.8rem;color: black}
-  .code{padding: 0.5rem;white-space: nowrap;max-width:7.4rem;overflow: auto}
+  .content{padding: 0.45rem 0.5rem;color: black}
+  .code{padding: 0.5rem;white-space: nowrap;max-width:8rem;overflow: auto}
 </style>

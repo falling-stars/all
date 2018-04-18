@@ -14,7 +14,7 @@
 </style>
 
 <template>
-  <div class="wrapper">
+  <div>
     <div class="stage full-width relative overflow-hide">
       <div class="back full-height full-width absolute"></div>
       <div class="text absolute text-center full-width full-height">
