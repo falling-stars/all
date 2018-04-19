@@ -1,5 +1,13 @@
 <template>
   <div>
+    <div class="head fixed black-bg full-width text-center relative">
+      <span class="white inline-block full-height">gracly</span>
+      <div class="menu absolute flex flex-justify-around flex-align-center pointer" @click="menu=!menu">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <div class="content flex-child-grow line-height-1_5 flex-child-noshrink border-box full-width">
       <h1 class="h1">基本用法</h1>
       <h2 class="h2" id="into">引入</h2>
@@ -176,6 +184,9 @@
       <h3 class="h3">组件效果：</h3>
       <div class="code" id="page"></div>
     </div>
+    <mt-popup v-model="menu" position="right">
+      ds
+    </mt-popup>
     <up></up>
   </div>
 </template>
@@ -185,26 +196,27 @@
   import {scrollEvent, query} from '~/assets/gracly/npm/base'
   import {GraPage} from '~/assets/gracly/npm/component'
   import '~/assets/gracly/css/gracly.css'
+  import Vue from 'vue'
+  import { Popup } from 'mint-ui'
+  Vue.component(Popup.name, Popup)
+
   export default {
     components: {up},
-    data: () => {
-      return {
-        list: [
-          {
-            text: '基础库',
-            url: '#into',
-            child: [{text: '伪柯里化', url: '#into', select: true}, {text: 'DOM选择器', url: '#into', select: false}]
-          },
-          {
-            text: '组件库',
-            url: '#example',
-            child: [{text: '单页', url: '#into', select: false}, {text: '分页', url: '#into', select: false}]
-          }
-        ],
-        isFixed: false,
-        isStatic: true
-      }
-    },
+    data: () => ({
+      list: [
+        {
+          text: '基础库',
+          url: '#into',
+          child: [{text: '伪柯里化', url: '#into', select: true}, {text: 'DOM选择器', url: '#into', select: false}]
+        },
+        {
+          text: '组件库',
+          url: '#example',
+          child: [{text: '单页', url: '#into', select: false}, {text: '分页', url: '#into', select: false}]
+        }
+      ],
+      menu: false
+    }),
     methods: {
       select(e) {
         const target = e.target
@@ -218,6 +230,7 @@
     created() {},
     activated() {
       const self = this
+      self.menu = false
       scrollEvent([
         {
           top: 50,
@@ -293,9 +306,14 @@
 </script>
 
 <style scoped>
+  .head{top: 0;left: 0;height: 46px;z-index: 99}
+  .head span{font-family:WaltDisneyScript,sans-serif;line-height: 32px;font-size: 35px}
+  .menu{width:0.9rem;height: 46px;right: 0;top: 0;padding-right: 0.3rem}
+  .menu div{width: 0.145rem;height: 0.145rem;background-color: white;border-radius: 50%}
+  .mint-popup-right{width: 5.5rem;height:calc(100% - 102px);top:calc(50% - 5px)}
   .h1{font-size: 0.5rem}
   .h2{font-size: 0.45rem}
   .h3{font-size: 0.45rem}
-  .content{padding: 0.45rem 0.5rem;color: black}
+  .content{padding: 0.45rem 0.5rem;color: black;margin-top: 46px}
   .code{padding: 0.5rem;white-space: nowrap;max-width:8rem;overflow: auto}
 </style>
