@@ -184,9 +184,48 @@
       <h3 class="h3">组件效果：</h3>
       <div class="code" id="page"></div>
     </div>
-    <mt-popup v-model="menu" position="right">
-      ds
-    </mt-popup>
+    <Popup v-model="menu" position="right" :modal="false">
+      <IndexList>
+        <IndexSection index="A">
+          <Cell title="Aaron"></Cell>
+          <Cell title="Alden"></Cell>
+          <Cell title="Austin"></Cell>
+          <Cell title="Austin"></Cell>
+          <Cell title="Austin"></Cell>
+          <Cell title="Austin"></Cell>
+          <Cell title="Austin"></Cell>
+          <Cell title="Austin"></Cell>
+          <Cell title="Austin"></Cell>
+          <Cell title="Austin"></Cell>
+          <Cell title="Austin"></Cell>
+        </IndexSection>
+        <IndexSection index="B">
+          <Cell title="Baldwin"></Cell>
+          <Cell title="Braden"></Cell>
+          <Cell title="Braden"></Cell>
+          <Cell title="Braden"></Cell>
+          <Cell title="Braden"></Cell>
+        </IndexSection>
+        <IndexSection index="C">
+          <Cell title="Caldwin"></Cell>
+          <Cell title="Craden"></Cell>
+          <Cell title="Craden"></Cell>
+          <Cell title="Ccraden"></Cell>
+          <Cell title="Csraden"></Cell>
+        </IndexSection>
+        <IndexSection index="D">
+          <Cell title="Caldwin"></Cell>
+          <Cell title="Craden"></Cell>
+          <Cell title="Craden"></Cell>
+          <Cell title="Ccraden"></Cell>
+          <Cell title="Csraden"></Cell>
+        </IndexSection>
+        <IndexSection index="Z">
+          <Cell title="Zack"></Cell>
+          <Cell title="Zane"></Cell>
+        </IndexSection>
+      </IndexList>
+    </Popup>
     <up></up>
   </div>
 </template>
@@ -196,12 +235,10 @@
   import {scrollEvent, query} from '~/assets/gracly/npm/base'
   import {GraPage} from '~/assets/gracly/npm/component'
   import '~/assets/gracly/css/gracly.css'
-  import Vue from 'vue'
-  import { Popup } from 'mint-ui'
-  Vue.component(Popup.name, Popup)
+  import { Popup, IndexList, IndexSection, Cell } from 'mint-ui'
 
   export default {
-    components: {up},
+    components: {up, Popup, IndexList, IndexSection, Cell},
     data: () => ({
       list: [
         {
@@ -215,7 +252,8 @@
           child: [{text: '单页', url: '#into', select: false}, {text: '分页', url: '#into', select: false}]
         }
       ],
-      menu: false
+      menu: false,
+      search: ''
     }),
     methods: {
       select(e) {
@@ -306,11 +344,11 @@
 </script>
 
 <style scoped>
-  .head{top: 0;left: 0;height: 46px;z-index: 99}
+  .head{top: 0;left: 0;height: 46px;z-index: 999}
   .head span{font-family:WaltDisneyScript,sans-serif;line-height: 32px;font-size: 35px}
   .menu{width:0.9rem;height: 46px;right: 0;top: 0;padding-right: 0.3rem}
   .menu div{width: 0.145rem;height: 0.145rem;background-color: white;border-radius: 50%}
-  .mint-popup-right{width: 5.5rem;height:calc(100% - 102px);top:calc(50% - 5px)}
+  .mint-popup-right{width: 10rem;height:calc(100% - 102px);top:calc(50% - 5px);z-index: 1024}
   .h1{font-size: 0.5rem}
   .h2{font-size: 0.45rem}
   .h3{font-size: 0.45rem}

@@ -1,5 +1,5 @@
 <style scoped>
-  header{bottom: 0;left: 0;z-index: 9999;height: 56px;background-color:#F9F9F9}
+  header{bottom: 0;left: 0;z-index: 999;height: 56px;background-color:#F9F9F9}
   li{width:56px}
   li i{margin-bottom: 2px}
 </style>
