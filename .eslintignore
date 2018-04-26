@@ -1,2 +1,4 @@
-dist
-client/assets
+dist-pc
+dist-m
+m/assets
+pc/assets
