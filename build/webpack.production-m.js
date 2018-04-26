@@ -1,7 +1,5 @@
 const {resolve} = require('path')
-const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const OfflinePlugin = require('offline-plugin')
 
 module.exports = {
   entry: {
@@ -58,8 +56,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: resolve(__dirname, '../m/template.html')
-    }),
-    new OfflinePlugin()
+    })
   ],
   resolve: {
     extensions: ['.js', '.json', '.css', '.vue'],
