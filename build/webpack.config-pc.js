@@ -11,7 +11,8 @@ module.exports = merge(base, {
   output: {
     path: resolve(__dirname, '../dist-pc'),
     filename: production ? '[name].js?[chunkhash]' : '[name].js',
-    chunkFilename: production ? '[name].js?[chunkhash]' : '[name].js'
+    chunkFilename: production ? '[name].js?[chunkhash]' : '[name].js',
+    publicPath: '/'
   },
   optimization: production ? {
     splitChunks: {
