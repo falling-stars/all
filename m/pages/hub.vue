@@ -1,13 +1,14 @@
 <style scoped>
+  .margin-right-1{margin-right: 1px}
   .head{height: 46px;border-bottom: solid 1px #dfdfdf;user-select: none}
-  .logo{font-family:WaltDisneyScript,sans-serif;cursor: default;line-height: 35px}
-  .hub{padding:10px 0.2rem 0.2rem 0.2rem;background-color:#F5F5F5}
+  .logo{font-family:WaltDisneyScript,sans-serif;cursor: default;line-height: 33px;font-size: 35px;letter-spacing: 1px}
+  .hub{padding:10px 0.2rem 0 0.2rem;background-color:#F5F5F5}
   .menu{flex-basis: 100%;background-color:#F5F5F5}
   .menu>div{margin-bottom: 0.2rem}
   .hub-title{font-weight: bold;font-size: 14px;box-sizing: border-box;padding-top: 2px}
   .hub-more{font-size: 12px;box-sizing: border-box;padding-top: 2px}
   .user i{font-size: 30px}
-  .login{flex-basis: 3.5rem}
+  .login{flex-basis: 58px}
   .login *{cursor: pointer}
   .login i{font-size: 22px}
   .login button{border:none;padding: 7px 15px;border-radius: 15px;font-size: 14px;background-color:#9c9c9c;color:white}
@@ -43,23 +44,21 @@
   .WebPack{background:url('../assets/images/webpack.png') center/25px auto no-repeat}
   .Vue{background:url('../assets/images/vue.png') center/22px auto no-repeat}
   .React{background:url('../assets/images/react.png') center/23px auto no-repeat}
-  .Html5{background:url('../assets/images/h5.png') center/22px auto no-repeat}
-  .JavaScript{background:url('../assets/images/js.png') center/25px auto no-repeat}
-  .Angular{background:url('../assets/images/angular.png') center/22px auto no-repeat}
-  .JavaScript{background:url('../assets/images/js.png') center/25px auto no-repeat}
+  .Html5{background:url('../assets/images/h5.png') center/21px auto no-repeat}
+  .JavaScript{background:url('../assets/images/js.png') center/24px auto no-repeat}
+  .Angular{background:url('../assets/images/angular.png') center/21px auto no-repeat}
   .Node{background:url('../assets/images/node.png') center/25px auto no-repeat}
 </style>
 
 <template>
   <div>
     <div class="head flex flex-justify-between white-bg">
-      <h1 class="logo flex-child-grow flex-child-noshrink inline-block padding-left margin-left font-30 black">gracly</h1>
-      <div class="user flex-child-noshrink flex flex-align-center margin-right">
+      <h1 class="logo flex-child-grow flex-child-noshrink inline-block padding-left black"><span class="orange">g</span><span class="orange-yellow margin-right-1">r</span><span class="yellow margin-right-1">a</span><span class="light-green">c</span><span class="blue">l</span><span class="light-purple">y</span></h1>
+      <div class="user flex-child-noshrink flex flex-align-center">
         <i class="fa fa-user-circle-o" aria-hidden="true"></i>
       </div>
       <div class="login full-height flex flex-align-center flex-justify-between flex-child-noshrink padding-right margin-left">
         <button>登录</button>
-        <button>注册</button>
       </div>
     </div>
     <Navbar v-model="hubItem" class="tab">

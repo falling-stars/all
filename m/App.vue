@@ -2,10 +2,10 @@
   <div id="app"  class="wrapper">
     <headContent></headContent>
     <keep-alive>
-      <router-view style="margin-bottom: 60px" v-if="$route.meta.keepAlive">
+      <router-view style="margin-bottom: 56px" v-if="$route.meta.keepAlive">
       </router-view>
     </keep-alive>
-    <router-view style="margin-bottom: 60px" v-if="!$route.meta.keepAlive">
+    <router-view style="margin-bottom: 56px" v-if="!$route.meta.keepAlive">
     </router-view>
   </div>
 </template>
