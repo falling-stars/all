@@ -22,7 +22,7 @@
       </li>
     </ul>
     <div v-if="isFixed" class="cover flex-child-noshrink border-right grey-f-bg"></div>
-    <div class="content flex-child-grow line-height-1_5">
+    <div class="content flex-child-grow line-height-1_5 border-box">
       <h1 class="h1">基本用法</h1>
       <h2 class="h2" id="into">引入</h2>
       我们将基础库和组件库分开形成 <span class="tip0">base.js</span> 和 <span class="tip0">component.js</span> 两个文件,在使用过程中可以自行决定是否使用自带的组件库

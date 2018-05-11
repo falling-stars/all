@@ -1,6 +1,6 @@
 <template>
   <div class="head flex flex-justify-between white-bg">
-    <h1 class="logo flex-child-grow flex-child-noshrink inline-block padding-left margin-left black"><span class="orange">g</span><span class="orange-yellow margin-right-1">r</span><span class="yellow margin-right-1">a</span><span class="light-green">c</span><span class="blue">l</span><span class="light-purple">y</span></h1>
+    <h1 class="logo flex-child-noshrink flex-child-noshrink inline-block padding-left margin-left black"><span class="orange">g</span><span class="orange-yellow margin-right-1">r</span><span class="yellow margin-right-1">a</span><span class="light-green">c</span><span class="blue">l</span><span class="light-purple">y</span></h1>
     <ul class="flex-child-grow padding-left">
       <li  class="inline-block full-height text-center margin-right border-box" v-for="(i, k) in list" :class="{select:selectNum === k}">
         <router-link class="inline-block full-height full-width" :to="i.url">{{i.text}}</router-link>
