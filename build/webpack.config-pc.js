@@ -6,7 +6,7 @@ const base = require('./webpack.config-base')
 const production = process.env.NODE_ENV === 'production' ? 1 : 0
 module.exports = merge(base, {
   entry: {
-    bundle: resolve(__dirname, '../pc/main')
+    app: resolve(__dirname, '../pc/main')
   },
   output: {
     path: resolve(__dirname, '../dist-pc'),
