@@ -1,4 +1,5 @@
+.idea
+.DS_Store
+node_modules
 dist-pc
 dist-m
-node_modules
-.idea
